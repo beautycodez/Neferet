@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { lusitana } from "@/app/ui/fonts";
 function HamburgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const navItems = [
@@ -12,7 +12,7 @@ function HamburgerMenu() {
   };
 
   return (
-    <div className="relative">
+    <div className={`${lusitana.className} relative`}>
       {/* Botón de hamburguesa */}
       <button
         className="flex flex-col items-center justify-center w-8 h-8 md:hidden"

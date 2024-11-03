@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { Nav } from "@/app/ui/Nav";
+import { lusitana } from '@/app/ui/fonts';
+
 
 export default function Header() {
   return (
     <>
-      <header className="bg-black min-h-[80px] md:min-h-[208px]">
+      <header className={`${lusitana.className} bg-black min-h-[80px] md:min-h-[208px]`}>
         {/* min-h-[80px] es equivalente a 20 * 4px, y 208px es 52 * 4px */}
         <div className="flex h-20 md:h-52 items-center justify-center rounded-lg p-4 shrink-0">
           <Image
