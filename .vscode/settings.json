@@ -1,0 +1,32 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "neferet-postgres",
+            "connectString": "postgres://default:dPw6rgoVxRs1@ep-cold-field-a4w6lufl-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require",
+            "database": "neferet-postgres",
+            "username": "default"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "connectString": "postgres://default:dPw6rgoVxRs1@ep-cold-field-a4w6lufl-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15",
+            "name": "neferet"
+        },
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "neferet",
+            "connectString": "postgres://default:dPw6rgoVxRs1@ep-cold-field-a4w6lufl.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+        }
+    ]
+}

@@ -6,6 +6,8 @@ import { lusitana } from '@/app/ui/fonts';
 export function Nav() {
     const navItems = [
     {name: "Home", href: "/"},
+    {name: "Products", href: "/products"},
+    {name: "Admin", href: "/admin"},
     {name: "Blog", href: "/blog"},
     {name: "Nosotros", href: "/nosotros"}
     ]

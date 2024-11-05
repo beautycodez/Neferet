@@ -9,6 +9,16 @@ export type User = {
   password: string;
 };
 
+export type Products = {
+  id: string;
+  categoriaid: string;
+  amount: number;
+  talla: number;
+  cantidad: number;
+  description: string;
+  nombre: string;
+  foto: string;
+};
 export type Customer = {
   id: string;
   name: string;

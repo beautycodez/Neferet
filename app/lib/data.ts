@@ -6,8 +6,20 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
+  Products,
 } from './definitions';
 import { formatCurrency } from './utils';
+
+export async function fetchProducts() {
+  try {
+    const data = await sql<Products>`SELECT * FROM products`;
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch revenue data.');
+  }
+}
 
 export async function fetchRevenue() {
   try {
