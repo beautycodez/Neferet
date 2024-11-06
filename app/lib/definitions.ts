@@ -15,7 +15,7 @@ export type Products = {
   amount: number;
   talla: number;
   cantidad: number;
-  description: string;
+  descripcion: string;
   nombre: string;
   foto: string;
 };
