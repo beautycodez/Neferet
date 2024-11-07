@@ -1,7 +1,7 @@
 import React from 'react';
-import Gallery from "@/app/ui/products/Gallery";
+import Gallery from "@/app/ui/products/gallery";
 import Breadcrumbs from '../ui/invoices/breadcrumbs';
-
+// I have changed the product
 const page = () => {
     return (
         <div>
