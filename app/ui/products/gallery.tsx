@@ -7,11 +7,11 @@ import Link from "next/link";
 async function Gallery() {
   const products = await fetchProducts();
   return (
-    <div className="flex gap-4 justify-center py-24">
+    <div className="flex gap-4 justify-center py-24 flex-wrap">
       {products.map((element) => (
         <Link key={element.id} href={`/products/${element.id}`}> 
           <div
-            className="relative w-60 h-60 rounded-lg shadow-lg"
+            className="relative w-60 h-60 rounded-lg shadow-lg my-12"
           >
             <Image
               src={`data:image/jpeg;base64,${element.foto}`}

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Nav } from "@/app/ui/Nav";
+import Nav  from "@/app/ui/Nav";
 import { lusitana } from '@/app/ui/fonts';
 
 

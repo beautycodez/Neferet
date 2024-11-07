@@ -9,11 +9,11 @@ export default function Page() {
   return (
     <>
       <Hero />
-      <main className="flex min-h-screen flex-col p-6">
+      <main className="flex min-h-screen flex-col p-2">
         <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-          <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 w-screen ">
+          <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-2 py-10 w-screen ">
             <h1
-              className={`${lusitana.className} text-gold text-2xl text-center`}
+              className={`${lusitana.className} text-gold text-2xl text-center sm:text-sm`}
             >
               Categorías de Joyas
             </h1>

@@ -3,14 +3,16 @@ import clsx from 'clsx';
 import HamburgerButton  from '@/app/ui/Hamburguer-button'
 import { lusitana } from '@/app/ui/fonts';
 
-export function Nav() {
-    const navItems = [
+export const navItems = [
     {name: "Home", href: "/"},
     {name: "Products", href: "/products"},
     {name: "Admin", href: "/admin"},
     {name: "Blog", href: "/blog"},
     {name: "Nosotros", href: "/nosotros"}
     ]
+
+export default function Nav() {
+    
     return(
         <>
         <nav className='hidden md:block'>
