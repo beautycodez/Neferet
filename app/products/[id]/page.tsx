@@ -4,6 +4,7 @@ import { fetchProductById } from "@/app/lib/data";
 import Image from "next/image";
 import { Button } from "@/app/ui/button";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
 
 async function ProductPage({ params }: { params: { id: string } }) {
   // Await para asegurar el acceso asíncrono a params
@@ -13,6 +14,14 @@ async function ProductPage({ params }: { params: { id: string } }) {
     const product = await fetchProductById(id);
 
     return (
+      <>
+      <Breadcrumbs breadcrumbs={[
+          { label: 'Products', href: '/products' },
+          {
+            label: 'Product Detail',
+            href: `/products/${product.id}`,
+            active: true,
+          },]} />
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8 p-6 bg-white shadow-lg rounded-lg">
         <Image
           src={`data:image/jpeg;base64,${product.foto}`}
@@ -42,6 +51,8 @@ async function ProductPage({ params }: { params: { id: string } }) {
           </Button>
         </div>
       </div>
+      </>
+      
     );
   } catch (error) {
     return <div>Product not found.</div>;
