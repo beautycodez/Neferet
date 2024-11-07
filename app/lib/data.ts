@@ -21,6 +21,26 @@ export async function fetchProducts() {
   }
 }
 
+export async function fetchProductById(id: string) {
+  try {
+    const data = await sql<Products>`
+      SELECT * FROM products
+      WHERE id = ${id};
+    `;
+
+    const product = data.rows.map((product) => ({
+      ...product,
+      // Convert amount from cents to dollars
+      amount: product.amount / 100,
+    }));
+
+    return product[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch product.');
+  }
+}
+
 export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.
