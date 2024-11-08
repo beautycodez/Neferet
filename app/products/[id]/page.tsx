@@ -8,9 +8,8 @@ import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
 
 async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   // Accede directamente a params.id sin await
-  const { id } = await params;
-
   try {
+    const { id } = await params;
     const product = await fetchProductById(id);
 
     return (
