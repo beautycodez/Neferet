@@ -135,6 +135,7 @@ export async function updateProduct(id: string, prevState: State, formData: Form
   }
 
   revalidatePath("/admin");
+  revalidatePath("/products");
   redirect("/admin");
 }
 
