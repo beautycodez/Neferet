@@ -10,13 +10,12 @@ export const metadata: Metadata = {
 };
 
 interface AdminPageProps {
-  searchParams: {
-    view?: string;
-  };
+  searchParams: Promise<{
+    view?: string  }>;
 }
 
-export default function Page({ searchParams }: AdminPageProps) {
-  const { view } = searchParams;
+export default async function Page({ searchParams }: AdminPageProps) {
+  const  { view }  = await searchParams;
 
   return (
     <main>
