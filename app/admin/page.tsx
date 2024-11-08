@@ -9,15 +9,25 @@ export const metadata: Metadata = {
   title: 'Crear un Producto',
 };
 
-export default function Page({ searchParams }: { searchParams?: { view?: string } }) {
-  const view = searchParams?.view;
+interface AdminPageProps {
+  searchParams: {
+    view?: string;
+  };
+}
+
+export default function Page({ searchParams }: AdminPageProps) {
+  const { view } = searchParams;
 
   return (
     <main>
       <Breadcrumbs
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'Admin', href: '/admin', active: true },
+          {
+            label: 'Admin',
+            href: '/admin',
+            active: true,
+          },
         ]}
       />
       <Form />
