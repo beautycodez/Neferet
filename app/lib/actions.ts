@@ -102,35 +102,41 @@ export async function createProduct(prevState: State, formData: FormData) {
   redirect("/admin");
 }
 
-// export async function updateInvoice(id: string, prevState: State, formData: FormData) {
-//   const validatedFields = UpdateInvoice.safeParse({
-//     customerId: formData.get('customerId'),
-//     amount: formData.get('amount'),
-//     status: formData.get('status'),
-//   });
+export async function updateProduct(id: string, prevState: State, formData: FormData) {
+  const validatedFields = UpdateInvoice.safeParse({
+    categoriaId: formData.get("categoriaId"),
+    amount: formData.get("amount"),
+    talla: formData.get("talla"),
+    cantidad: formData.get("cantidad"),
+    descripcion: formData.get("descripcion"),
+    nombre: formData.get("nombre"),
+    foto: formData.get("foto")
+  });
  
-//   if (!validatedFields.success) {
-//     return {
-//       errors: validatedFields.error.flatten().fieldErrors,
-//       message: 'Missing Fields. Failed to Update Invoice.',
-//     };
-//   }
-//   const { customerId, amount, status } = validatedFields.data;
-//   const amountInCents = amount * 100;
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Update product.',
+    };
+  }
+  // Prepare data for insertion into the database
+  const { categoriaId, amount, talla, cantidad, descripcion, nombre, foto } = validatedFields.data;
+  const amountInCents = amount * 100;
+  const fotoBase64 = await handleFileUpload (foto);
 
-//   try {
-//     await sql`
-//           UPDATE invoices
-//           SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
-//           WHERE id = ${id}
-//         `;
-//   } catch (error) {
-//     return { message: `Database Error: Failed to update Invoice and ${error}.` };
-//   }
+  try {
+    await sql`
+          UPDATE products
+          SET categoriaId = ${categoriaId}, amount = ${amountInCents}, talla = ${talla}, cantidad = ${cantidad}, descripcion = ${descripcion}, nombre = ${nombre}, foto = ${fotoBase64}
+          WHERE id = ${id}
+        `;
+  } catch (error) {
+    return { message: `Database Error: Failed to update Products and ${error}.` };
+  }
 
-//   revalidatePath("/dashboard/invoices");
-//   redirect("/dashboard/invoices");
-// }
+  revalidatePath("/admin");
+  redirect("/admin");
+}
 
 export async function deleteInvoice(id: string) {
   try {

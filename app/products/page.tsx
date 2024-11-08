@@ -13,7 +13,7 @@ const page = () => {
             href: '/products',
             active: true,
           },]} />
-            <Gallery />
+            <Gallery edit={false}/>
         </div>
     );
 };
