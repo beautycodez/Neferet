@@ -14,7 +14,7 @@ interface AdminPageProps {
   };
 }
 export default async function Page( { searchParams } : AdminPageProps) {
-  const { view } = await searchParams;
+  const { view } = searchParams;
   return (
     <main>
       <Breadcrumbs
