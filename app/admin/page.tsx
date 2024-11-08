@@ -8,23 +8,16 @@ import Gallery from '../ui/products/gallery';
 export const metadata: Metadata = {
   title: 'Crear un Producto',
 };
-interface AdminPageProps {
-  searchParams: {
-    view?: string;
-  };
-}
-export default async function Page( { searchParams } : AdminPageProps) {
-  const { view } = searchParams;
+
+export default function Page({ searchParams }: { searchParams?: { view?: string } }) {
+  const view = searchParams?.view;
+
   return (
     <main>
       <Breadcrumbs
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          {
-            label: 'Admin',
-            href: '/admin',
-            active: true,
-          },
+          { label: 'Admin', href: '/admin', active: true },
         ]}
       />
       <Form />
