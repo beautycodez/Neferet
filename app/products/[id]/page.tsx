@@ -56,7 +56,8 @@ async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
       </>
     );
   } catch (error) {
-    return <div>Product not found.</div>;
+    console.log(error)
+    return <div>Product not found </div>;
   }
 }
 

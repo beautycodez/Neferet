@@ -1,17 +1,23 @@
 import { fetchProducts } from "@/app/lib/data";
-import { DivideIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/app/ui/button";
+import { Products } from "@/app/lib/definitions"
 
 interface GalleryProps {
   edit: boolean;
 }
 
 async function Gallery({ edit }: GalleryProps) {
-  const products = await fetchProducts();
+  let products : Products[] = [];
 
+  try {
+    products = await fetchProducts();
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    // Puedes mostrar un mensaje de error en la UI o manejarlo según prefieras.
+  }
   return (
     <div className="flex gap-4 justify-center py-24 flex-wrap">
       {products.map((element) => (

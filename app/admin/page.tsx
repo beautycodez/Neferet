@@ -1,7 +1,6 @@
 import Form from '@/app/ui/admin/create-form';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { Metadata } from 'next';
-import { Button } from '../ui/button';
 import AddProductForm from '../ui/admin/Add-product-form';
 import Gallery from '../ui/products/gallery';
 
