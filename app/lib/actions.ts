@@ -3,6 +3,9 @@ import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { v2 as cloudinary } from 'cloudinary';
+import { Readable } from 'stream';
+
 // import { signIn } from '@/auth';
 // import { AuthError } from 'next-auth';
 
@@ -147,34 +150,31 @@ export async function deleteInvoice(id: string) {
   }
 }
 
-export async function handleFileUpload(file: File ) {
-  try {
-    // Lee el contenido del archivo como un buffer
-    const buffer = await file.arrayBuffer();
-    // Si necesitas convertirlo a Base64:
-    const base64String = Buffer.from(buffer).toString("base64");
-    
-    return base64String; // Ahora tienes el contenido de la imagen en Base64
-  } catch (error) {
-    console.error("Error reading file:", error);
-  }
-}
+async function handleFileUpload(file: File): Promise<string> {
+  return new Promise(async (resolve, reject) => {
+    // Verificar si el archivo es una imagen válida
+    if (!file || !file.type.startsWith('image/')) {
+      return reject(new Error('Invalid file type'));
+    }
 
-// export async function authenticate(
-//   prevState: string | undefined,
-//   formData: FormData,
-// ) {
-//   try {
-//     await signIn('credentials', formData);
-//   } catch (error) {
-//     if (error instanceof AuthError) {
-//       switch (error.type) {
-//         case 'CredentialsSignin':
-//           return 'Invalid credentials.';
-//         default:
-//           return 'Something went wrong.';
-//       }
-//     }
-//     throw error;
-//   }
-// }
+    // Convertir el archivo a un buffer
+    const buffer = Buffer.from(await file.arrayBuffer()); // Convertir el archivo en buffer
+    const fileStream = Readable.from(buffer); // Crear un Readable stream de Node.js a partir del buffer
+
+    // Subir el archivo a Cloudinary utilizando el stream
+    cloudinary.uploader.upload_stream(
+      {
+        folder: 'productos', // Carpeta en Cloudinary donde se almacenará la imagen
+        use_filename: true, // Usar el nombre original del archivo
+        unique_filename: false, // No modificar el nombre del archivo
+      },
+      (error, result) => { // Simplificado para no usar los tipos específicos
+        if (error) {
+          reject(error); // Si hay error, rechaza la promesa
+        } else {
+          resolve(result?.secure_url ?? ''); // Retorna la URL segura de la imagen subida
+        }
+      }
+    ).end(buffer); // Subir el buffer a Cloudinary
+  });
+}

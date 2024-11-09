@@ -24,7 +24,7 @@ async function Gallery({ edit }: GalleryProps) {
         <Link key={element.id} href={`/products/${element.id}`}>
           <div className="relative w-60 h-60 rounded-lg shadow-lg my-12">
             <Image
-              src={`data:image/jpeg;base64,${element.foto}`}
+              src={element.foto}
               alt={element.nombre}
               width={500} // Mantén estos valores para la optimización de Next.js
               height={500}

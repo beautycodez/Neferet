@@ -26,7 +26,7 @@ async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
         />
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8 p-6 bg-white shadow-lg rounded-lg">
           <Image
-            src={`data:image/jpeg;base64,${product.foto}`}
+            src={product.foto}
             alt={product.nombre}
             width={700}
             height={900}
