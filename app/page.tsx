@@ -7,7 +7,7 @@ export default function Page() {
       <Hero />
       <main className="flex min-h-screen flex-col p-1">
         <h1
-          className={`${lusitana.className} text-gold text-2xl text-center sm:text-sm`}
+          className={`${lusitana.className} text-gold text-2xl text-center sm:text-sm md:text-xl`}
         >
           Categorías de Joyas
         </h1>
