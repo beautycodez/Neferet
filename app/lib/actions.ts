@@ -142,13 +142,14 @@ export async function updateProduct(id: string, prevState: State, formData: Form
   redirect("/admin");
 }
 
-export async function deleteInvoice(id: string) {
+export async function deleteProduct(id: string) {
   try {
-    await sql`DELETE FROM invoices WHERE id = ${id}`;
-    revalidatePath("/dashboard/invoices");
+    await sql`DELETE FROM products WHERE id = ${id}`;
+    revalidatePath("/admin");
+    revalidatePath("/products");
     return { message: "Deleted Invoice." };
   } catch (error) {
-    return { message: `Database Error: Failed to delete Invoice and ${error}.` };
+    return { message: `Database Error: Failed to delete Product and ${error}.` };
   }
 }
 
