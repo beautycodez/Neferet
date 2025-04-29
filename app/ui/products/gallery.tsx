@@ -1,25 +1,16 @@
 import { fetchProducts } from "@/app/lib/data";
-import { deleteProduct } from "@/app/lib/actions";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/app/ui/button";
 import { Products } from "@/app/lib/definitions";
-<<<<<<< HEAD
-
-=======
 import DeleteButton from "./Delete-button";
->>>>>>> d0ce2a173338c65bfa2b6777ff63abb174f1847a
 interface GalleryProps {
   edit: boolean;
 }
 
 async function Gallery({ edit }: GalleryProps) {
   let products: Products[] = [];
-<<<<<<< HEAD
-
-=======
->>>>>>> d0ce2a173338c65bfa2b6777ff63abb174f1847a
   try {
     products = await fetchProducts();
   } catch (error) {
@@ -49,12 +40,7 @@ async function Gallery({ edit }: GalleryProps) {
                 <Link href={`/products/${element.id}/edit`}>
                   <Button type="button">Editar {element.nombre}</Button>
                 </Link>
-<<<<<<< HEAD
-
-                <Button className="bg-red-600" type="button" onClick={()=> deleteProduct(element.id)}>Delete {element.nombre}</Button>
-=======
                 <Link href="/admin"><DeleteButton id={element.id} /></Link>
->>>>>>> d0ce2a173338c65bfa2b6777ff63abb174f1847a
               </>
             )}
             <div className="mt-2 text-center">
