@@ -7,7 +7,7 @@ import Header from "./ui/Header";
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "El Anillo Perfecto",
+  title: "El Anillo Perfecto!",
   description: "El Anillo Perfecto para el Día Perfecto",
   icons: {
     icon: "/favicon.ico",
