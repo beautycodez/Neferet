@@ -62,7 +62,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   debug: !!process.env.AUTH_DEBUG,
   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
   adapter: UnstorageAdapter(storage),
-  providers: [GitHub({ clientId: process.env.AUTH_GITHUB_ID, clientSecret: process.env.AUTH_GITHUB_SECRET })],
+  providers: [GitHub({ clientId: process.env.AUTH_GITHUB_ID || process.env.AUTH_GITHUB_ID_PRO, clientSecret: process.env.AUTH_GITHUB_SECRET || process.env.AUTH_GITHUB_SECRET_PRO })],
   basePath: "/auth",
   session: { strategy: "jwt" },
   callbacks: {
