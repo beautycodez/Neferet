@@ -17,7 +17,7 @@ export default function Nav() {
         <>
         <nav className='hidden md:block'>
             <ul className={`${lusitana.className} flex justify-between mx-36 p-5`}>
-                {navItems.map((element, index) => <li key={index} className="text-gold text-xl p-5 hover:bg-gold hover:text-black"><a href={element.href}>{element.name}</a></li>)}
+                {navItems.map((element, index) => <li key={index} className="text-white text-xl p-5 hover:bg-gold hover:text-yellow-600"><a href={element.href}>{element.name}</a></li>)}
             </ul>
         </nav>
         <nav className='p-10'>

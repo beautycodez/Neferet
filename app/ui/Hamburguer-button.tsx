@@ -37,7 +37,7 @@ function HamburgerMenu() {
         // <nav className="absolute top-16 left-0 w-full bg-black text-white p-4">
         <nav className='absolute top-16 left-0 w-full bg-black text-white p-4 z-50'>
         <ul className="flex flex-col space-y-2">
-            {navItems.map((element, index) => <li key={index} className="text-gold text-xl p-5 hover:bg-gold hover:text-black"><a href={element.href}>{element.name}</a></li>)}
+            {navItems.map((element, index) => <li key={index} className="text-white text-xl p-5 hover:bg-gold hover:text-yellow-500"><a href={element.href}>{element.name}</a></li>)}
         </ul>
     </nav>
         
