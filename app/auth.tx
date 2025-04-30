@@ -48,11 +48,20 @@ declare module "next-auth" {
   }
 }
 
-
+const storage = createStorage({
+  driver: process.env.VERCEL
+    ? vercelKVDriver({
+        url: process.env.AUTH_KV_REST_API_URL,
+        token: process.env.AUTH_KV_REST_API_TOKEN,
+        env: false,
+      })
+    : memoryDriver(),
+})
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   debug: !!process.env.AUTH_DEBUG,
   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
+  adapter: UnstorageAdapter(storage),
   providers: [GitHub({ clientId: process.env.AUTH_GITHUB_ID || process.env.AUTH_GITHUB_ID_PRO, clientSecret: process.env.AUTH_GITHUB_SECRET || process.env.AUTH_GITHUB_SECRET_PRO })],
   basePath: "/auth",
   session: { strategy: "jwt" },
