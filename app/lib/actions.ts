@@ -170,7 +170,7 @@ async function handleFileUpload(file: File): Promise<string> {
       {
         folder: 'productos', // Carpeta en Cloudinary donde se almacenará la imagen
         use_filename: true, // Usar el nombre original del archivo
-        unique_filename: false, // No modificar el nombre del archivo
+        unique_filename: true, // No modificar el nombre del archivo
       },
       (error, result) => { // Simplificado para no usar los tipos específicos
         if (error) {
