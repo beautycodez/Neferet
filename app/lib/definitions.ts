@@ -18,6 +18,7 @@ export type Products = {
   descripcion: string;
   nombre: string;
   foto: string;
+  publicid: string;
 };
 export type Customer = {
   id: string;
