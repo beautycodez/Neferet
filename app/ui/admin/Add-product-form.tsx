@@ -7,6 +7,7 @@ import {
 import { createProduct, State } from "@/app/lib/actions";
 import { Button } from "@/app/ui/button";
 import { useActionState, useState, useEffect } from "react";
+import { Vendors } from "@/app/lib/definitions";
 
 function AddProductForm() {
   const initialState: State = { message: null, errors: {} };
@@ -21,7 +22,7 @@ function AddProductForm() {
     "Díges",
   ];
 
-  const [vendors, setVendors] = useState<any[]>([]);
+  const [vendors, setVendors] = useState<Vendors[]>([]);
 
   useEffect(() => {
     const fetchVendors = async () => {

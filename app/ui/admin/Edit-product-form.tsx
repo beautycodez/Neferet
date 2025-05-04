@@ -7,7 +7,7 @@ import {
 import { updateProduct, State } from "@/app/lib/actions";
 import { Button } from "@/app/ui/button";
 import { useActionState, useState, useEffect } from "react";
-import { Products } from "@/app/lib/definitions";
+import { Products, Vendors } from "@/app/lib/definitions";
 
 function EditProductForm({ products }: { products: Products }) {
   const initialState: State = { message: null, errors: {} };
@@ -22,7 +22,7 @@ function EditProductForm({ products }: { products: Products }) {
     "Pisa Corbatas",
     "Díges",
   ];
-  const [vendors, setVendors] = useState<any[]>([]);
+  const [vendors, setVendors] = useState<Vendors[]>([]);
 
   useEffect(() => {
     const fetchVendors = async () => {
