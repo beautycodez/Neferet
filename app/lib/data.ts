@@ -7,6 +7,7 @@ import {
   LatestInvoiceRaw,
   Revenue,
   Products,
+  Vendors
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -41,6 +42,16 @@ export async function fetchProductById(id: string) {
   }
 }
 
+export async function fetchVendors() {
+  try { 
+    const data = await sql<Vendors>`Select * from vendors`;
+    return data.rows;
+  }
+  catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch vendor data.');
+  }
+}
 export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.

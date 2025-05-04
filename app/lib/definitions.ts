@@ -19,7 +19,17 @@ export type Products = {
   nombre: string;
   foto: string;
   publicid: string;
+  vendor_id: number
 };
+
+export type Vendors = {
+  id: number;
+  nombre: string;
+  apellido: string;
+  numero_cell: string;
+  whatsapp_link: string;
+  correo: string;  
+}
 export type Customer = {
   id: string;
   name: string;
