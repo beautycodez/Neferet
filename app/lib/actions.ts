@@ -36,6 +36,10 @@ const FormSchema = z.object({
     )
     .optional(),
   publicId: z.string().optional(), // Agrega esto si necesitas el publicId para eliminar la imagen
+  vendor_id: z.coerce
+    .number()
+    .int()
+    .positive()
 });
 // Use Zod to update the expected types
 const UpdateInvoice = FormSchema.omit({ id: true });
@@ -51,6 +55,7 @@ export type State = {
     descripcion?: string[];
     nombre?: string[];
     foto?: string[];
+    vendor_id?: string[];
     
   };
   message?: string | null;
@@ -68,6 +73,7 @@ export async function createProduct(prevState: State, formData: FormData) {
     descripcion: formData.get("descripcion"),
     nombre: formData.get("nombre"),
     foto: formData.get("foto"),
+    vendor_id: formData.get("vendor_id"),
   });
   console.log("Validated fields:", validatedFields.data); // Log the validated fields
 
@@ -81,7 +87,7 @@ export async function createProduct(prevState: State, formData: FormData) {
   }
 
   // Prepare data for insertion into the database
-  const { categoriaId, amount, talla, cantidad, descripcion, nombre, foto } =
+  const { categoriaId, amount, talla, cantidad, descripcion, nombre, foto, vendor_id } =
     validatedFields.data;
   const amountInCents = amount * 100;
   let fotoBase64 = null; // Initialize fotoBase64 to null
@@ -92,8 +98,8 @@ export async function createProduct(prevState: State, formData: FormData) {
       // Insert data into the database
       try {
         await sql`
-      INSERT INTO products (categoriaId, amount, talla, cantidad, descripcion, nombre, foto, publicid)
-      VALUES (${categoriaId}, ${amountInCents}, ${talla}, ${cantidad}, ${descripcion}, ${nombre}, ${fotoBase64.secureUrl}, ${fotoBase64.publicId})
+      INSERT INTO products (categoriaId, amount, talla, cantidad, descripcion, nombre, foto, publicid, vendor_id)
+      VALUES (${categoriaId}, ${amountInCents}, ${talla}, ${cantidad}, ${descripcion}, ${nombre}, ${fotoBase64.secureUrl}, ${fotoBase64.publicId}, ${vendor_id})
     `;
       } catch (error) {
         // If a database error occurs, return a more specific error.
@@ -135,6 +141,7 @@ export async function updateProduct(
     descripcion: formData.get("descripcion"),
     nombre: formData.get("nombre"),
     foto: photo instanceof File && photo.size > 0 ? photo : undefined, // Ignora archivos vacíos
+    vendor_id: formData.get("vendor_id"),
   });
 
   if (!validatedFields.success) {
@@ -145,7 +152,7 @@ export async function updateProduct(
     };
   }
   // Prepare data for insertion into the database
-  const { categoriaId, amount, talla, cantidad, descripcion, nombre, foto } =
+  const { categoriaId, amount, talla, cantidad, descripcion, nombre, foto, vendor_id } =
     validatedFields.data;
   const amountInCents = amount * 100;
 
@@ -158,7 +165,7 @@ export async function updateProduct(
     try {
       await sql`
         UPDATE products
-        SET categoriaId = ${categoriaId}, amount = ${amountInCents}, talla = ${talla}, cantidad = ${cantidad}, descripcion = ${descripcion}, nombre = ${nombre}, foto = ${fotoBase64.secureUrl}, publicId = ${fotoBase64.publicId}
+        SET categoriaId = ${categoriaId}, amount = ${amountInCents}, talla = ${talla}, cantidad = ${cantidad}, descripcion = ${descripcion}, nombre = ${nombre}, foto = ${fotoBase64.secureUrl}, publicId = ${fotoBase64.publicId}, vendor_id = ${vendor_id}
         WHERE id = ${id}
       `;
     } catch (error) {
@@ -173,7 +180,7 @@ export async function updateProduct(
     try {
       await sql`
         UPDATE products
-        SET categoriaId = ${categoriaId}, amount = ${amountInCents}, talla = ${talla}, cantidad = ${cantidad}, descripcion = ${descripcion}, nombre = ${nombre}, foto = ${fotoBase64}, publicId = ${existingProduct.publicid}
+        SET categoriaId = ${categoriaId}, amount = ${amountInCents}, talla = ${talla}, cantidad = ${cantidad}, descripcion = ${descripcion}, nombre = ${nombre}, foto = ${fotoBase64}, publicId = ${existingProduct.publicid}, vendor_id = ${vendor_id} 
         WHERE id = ${id}
       `;
     } catch (error) {
