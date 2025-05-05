@@ -71,7 +71,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     async session({ session, token }) {
       if (token?.accessToken) session.accessToken = token.accessToken;
-      session.user.role = session.user.email === "angelloruizlandauro12@gmail.com"?"admin": "user";
+      session.user.role = session.user.email === "angelloruizlandauro12@gmail.com" || "walle_199x@hotmail.com" ?"admin": "user";
       return session
     },
     redirect({url, baseUrl}) {
